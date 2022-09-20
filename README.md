@@ -11,7 +11,7 @@ Go to http://34.65.185.118/docs in your browser to see the API documentation. <s
 
 In this document it is shown how to use the API through the terminal, by using the *curl* command.
 
-Please, contact us at info@detektia.com in order to get the **login credentials** of a fully working example.
+Please, contact us at info@detektia.com in order to get the `login credentials` of a fully working example.
 
 
 ## Login
