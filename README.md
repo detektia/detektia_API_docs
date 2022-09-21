@@ -18,10 +18,10 @@ Please, contact us at info@detektia.com in order to get the `login credentials` 
 
 The first thing to do is to log in. The API uses OAuth2 with bearer token, so you have to retrieve a token and use it when calling the API methods.
 
-To get the token, use the http://34.65.185.118/auth/token endpoint. Both `username` and `password` have to be provided.
+To get the token, use the https://34.65.185.118/auth/token endpoint. Both `username` and `password` have to be provided.
 
 ```python
-curl -X POST http://34.65.185.118/auth/token -H 'accept: application/json' -H 'Content-Type: application/x-www-form-urlencoded' -d 'grant_type=&username=username&password=password&scope=&client_id=&client_secret='
+curl -k -X POST https://34.65.185.118/auth/token -H 'accept: application/json' -H 'Content-Type: application/x-www-form-urlencoded' -d 'grant_type=&username=username&password=password&scope=&client_id=&client_secret='
 ```
 
 The response will contain the token, e.g.:
@@ -43,10 +43,10 @@ The following endpoints retrive the metadata of the datasets.
 
 ### Point datasets
 
-Endpoint: http://34.65.185.118/users/username/datasets
+Endpoint: https://34.65.185.118/users/username/datasets
 
 ```python
-curl -X GET http://34.65.185.118/users/demo_genoa/datasets -H 'accept: application/json' -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMDA2MDgzOH0.F-Cme8voQHu_UkHsZjD_H7g_asa5ewilv69o5H0Yc-w"
+curl -k -X GET https://34.65.185.118/users/demo_genoa/datasets -H 'accept: application/json' -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMDA2MDgzOH0.F-Cme8voQHu_UkHsZjD_H7g_asa5ewilv69o5H0Yc-w"
 ```
 
 
@@ -93,19 +93,19 @@ In this example, there are two point datasets `genoa_20170124` and `genoa_201812
 The *dates* are expressed as the number of days from the 1st of January, 1 B.C.
 
 
-In order to get the metadata of a particular point dataset, in a json format, the endpoint is: http://34.65.185.118/users/username/datasets/datasetname/metadata
+In order to get the metadata of a particular point dataset, in a json format, the endpoint is: https://34.65.185.118/users/username/datasets/datasetname/metadata
 
 ```python
-curl -X GET http://34.65.185.118/users/demo_genoa/datasets/genoa_20170124/metadata -H 'accept: application/json' -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMDA2MDgzOH0.F-Cme8voQHu_UkHsZjD_H7g_asa5ewilv69o5H0Yc-w"
+curl -k -X GET https://34.65.185.118/users/demo_genoa/datasets/genoa_20170124/metadata -H 'accept: application/json' -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMDA2MDgzOH0.F-Cme8voQHu_UkHsZjD_H7g_asa5ewilv69o5H0Yc-w"
 ```
 
 
 
 ### Polygon datasets
-Endpoint: http://34.65.185.118/users/username/polygons
+Endpoint: https://34.65.185.118/users/username/polygons
 
 ```python
-curl -X GET http://34.65.185.118/users/demo_genoa/polygons -H 'accept: application/json' -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMDA2MDgzOH0.F-Cme8voQHu_UkHsZjD_H7g_asa5ewilv69o5H0Yc-w"
+curl -k -X GET https://34.65.185.118/users/demo_genoa/polygons -H 'accept: application/json' -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMDA2MDgzOH0.F-Cme8voQHu_UkHsZjD_H7g_asa5ewilv69o5H0Yc-w"
 ```
 
 The response is a list of jsons containing the polygons metadata, e.g.:
@@ -132,10 +132,10 @@ The response is a list of jsons containing the polygons metadata, e.g.:
 
 In this example there is only one polygon dataset in the database, `bhi_geonva`, which belongs to the same project as the point datasets, `Genoa`.
 
-In order to get the metadata of a particular polygon dataset, in a json format, the endpoint is: http://34.65.185.118/users/username/polygons/datasetname/metadata <span style="color:salmon">**(Will be available in the next update)**</span> 
+In order to get the metadata of a particular polygon dataset, in a json format, the endpoint is: https://34.65.185.118/users/username/polygons/datasetname/metadata <span style="color:salmon">**(Will be available in the next update)**</span> 
 
 ```python
-curl -X GET http://34.65.185.118/users/demo_genova/polygons/bhi_genoa/metadata -H 'accept: application/json' -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMDA2MDgzOH0.F-Cme8voQHu_UkHsZjD_H7g_asa5ewilv69o5H0Yc-w"
+curl -k -X GET https://34.65.185.118/users/demo_genova/polygons/bhi_genoa/metadata -H 'accept: application/json' -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMDA2MDgzOH0.F-Cme8voQHu_UkHsZjD_H7g_asa5ewilv69o5H0Yc-w"
 ```
 
 
@@ -143,7 +143,7 @@ curl -X GET http://34.65.185.118/users/demo_genova/polygons/bhi_genoa/metadata -
 endpoint: <span style="color:#91B9FF">users/username/extended</span> 
 
 ```python
-curl -X GET http://34.65.185.118/users/demo_genoa/extended -H 'accept: application/json' -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMDA2MDgzOH0.F-Cme8voQHu_UkHsZjD_H7g_asa5ewilv69o5H0Yc-w"
+curl -k -X GET https://34.65.185.118/users/demo_genoa/extended -H 'accept: application/json' -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMDA2MDgzOH0.F-Cme8voQHu_UkHsZjD_H7g_asa5ewilv69o5H0Yc-w"
 ```
 
 The response body is a list of jsons containing the extended metadata, e.g.:
@@ -158,10 +158,10 @@ The following endpoints retrive the data of the datasets.
 
 
 ### Polygon dataset
-Endpoint: http://34.65.185.118/users/username/polygons/datasetname 
+Endpoint: https://34.65.185.118/users/username/polygons/datasetname 
 
 ```python
-curl -X GET http://34.65.185.118/users/demo_genoa/polygons/bhi_genova -H 'accept: application/json' -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMDA2MDgzOH0.F-Cme8voQHu_UkHsZjD_H7g_asa5ewilv69o5H0Yc-w"
+curl -k -X GET https://34.65.185.118/users/demo_genoa/polygons/bhi_genova -H 'accept: application/json' -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMDA2MDgzOH0.F-Cme8voQHu_UkHsZjD_H7g_asa5ewilv69o5H0Yc-w"
 ```
 
 This endpoint retrives a *FeatureCollection* with all the polygons in the dataset, e.g.:
@@ -200,7 +200,7 @@ The response contains the id, coordinates and all the loaded indices (properties
 
 
 ### Point dataset
-Endpoint: http://34.65.185.118/users/username/datasets/datasetname 
+Endpoint: https://34.65.185.118/users/username/datasets/datasetname 
 
 This endpoint retrives the velocity and time series of all the dataset points. This endpoint can have an optional `request body`:
 
@@ -211,7 +211,7 @@ Here, as an example, a query with all the arguments is shown:
 
 
 ```python
-curl -X GET 'http://34.65.185.118/users/demo_genoa/datasets/genoa_20181209?date_span=736177&date_span=737413&polygon=%7B%22coordinates%22%3A+%5B%5B%5B8.973958%2C+44.409764%5D%2C+%5B8.975782%2C+44.409579%5D%2C+%5B8.975424%2C+44.409205%5D%2C+%5B8.974227%2C+44.409236%5D%2C+%5B8.973958%2C+44.409764%5D%5D%5D%2C+%22type%22%3A+%22Polygon%22%7D' -H 'accept: application/json' -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMDA2MDgzOH0.F-Cme8voQHu_UkHsZjD_H7g_asa5ewilv69o5H0Yc-w"
+curl -k -X GET 'https://34.65.185.118/users/demo_genoa/datasets/genoa_20181209?date_span=736177&date_span=737413&polygon=%7B%22coordinates%22%3A+%5B%5B%5B8.973958%2C+44.409764%5D%2C+%5B8.975782%2C+44.409579%5D%2C+%5B8.975424%2C+44.409205%5D%2C+%5B8.974227%2C+44.409236%5D%2C+%5B8.973958%2C+44.409764%5D%5D%5D%2C+%22type%22%3A+%22Polygon%22%7D' -H 'accept: application/json' -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMDA2MDgzOH0.F-Cme8voQHu_UkHsZjD_H7g_asa5ewilv69o5H0Yc-w"
 ```
 
 **Note**, in this example the *polygon* json has been URL-encoded. Its original form is the following:
@@ -270,12 +270,12 @@ The response body is
 ### Point details
 
 Apart form the velocity and the time series data, each point can also have loaded values such as indices or labels. These values are called *extended values*. This in formation can be retreived only for a given set of points, identified by their id, with the endpoint 
-http://34.65.185.118/users/username/datasets/datasetname/details
+https://34.65.185.118/users/username/datasets/datasetname/details
 
 This endpoint needs a request body in which the point ids are specified. In these example let's take the two first point ids of the previous response body: `105009` and `105421`.
 
 ```python
-curl -X GET 'http://34.65.185.118/users/demo_genoa/datasets/genoa_20181209/details?ids=105009&ids=105421' -H 'accetp:application/json' -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMDA2MDgzOH0.F-Cme8voQHu_UkHsZjD_H7g_asa5ewilv69o5H0Yc-w"
+curl -k -X GET 'https://34.65.185.118/users/demo_genoa/datasets/genoa_20181209/details?ids=105009&ids=105421' -H 'accetp:application/json' -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMDA2MDgzOH0.F-Cme8voQHu_UkHsZjD_H7g_asa5ewilv69o5H0Yc-w"
 ```
 
 The response body is a feature collection with a list of jsons containing all the information of the requested points.
@@ -337,12 +337,12 @@ As can be seen, not only velocity and all the dates are retrieved, but also the 
 
 ### Extended values <span style="color:salmon">**(Will be available in the next update)**</span> 
 
-The extended values can be access for all the points at once indicating its key. This can be done with the endpoint http://34.65.185.118/users/username/datasets/datasetname/extended and the `request body` *key*=extended_key.
+The extended values can be access for all the points at once indicating its key. This can be done with the endpoint https://34.65.185.118/users/username/datasets/datasetname/extended and the `request body` *key*=extended_key.
 
 Let's take the *warnings* key for this example.
 
 ```python
-curl -X GET http://34.65.185.118/users/demo_genoa/datasets/genoa_20181209/extended?key=warnings -H 'accetp:application/json' -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMDA2MDgzOH0.F-Cme8voQHu_UkHsZjD_H7g_asa5ewilv69o5H0Yc-w"
+curl -k -X GET https://34.65.185.118/users/demo_genoa/datasets/genoa_20181209/extended?key=warnings -H 'accetp:application/json' -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMDA2MDgzOH0.F-Cme8voQHu_UkHsZjD_H7g_asa5ewilv69o5H0Yc-w"
 ```
 
 The response body is
