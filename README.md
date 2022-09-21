@@ -204,7 +204,7 @@ Endpoint: https://34.65.185.118/users/username/datasets/datasetname
 
 This endpoint retrives the velocity and time series of all the dataset points. This endpoint can have an optional `request body`:
 
-- `bbox` *xmin,xmax,ymin,ymax* (floats) or `polygon` *{"coordinates": [[[, ],[, ],[, ],...]], "type": "Polygon"}* (geojson): limit the points to be retrived, to the ones contained inside them. If both arguments are passed, *bbox* prevails over *polygon*. Thus, in order to get the whole area, non of these argumnets shall be passed. 
+- `bbox` *xmin,xmax,ymin,ymax* (floats) or `polygon` *{"coordinates": [[[, ],[, ],[, ],...]], "type": "Polygon"}* (geojson): limit the points to be retrived, to the ones contained inside them. Only onw of the two options *bbox* or *polygon* can be passed. In order to get the whole area, non of these argumnets shall be passed. 
 - `date_spam`, start_date and end_date (integers): delimit the time series to be retrieved between the start and end dates. If no *date_span* argument is passed, the response only contains point velocities. Thus, in order to get the complete time series, the start and end dates have to be the first and last dates, which are given in the metadata.
 
 Here, as an example, a query with all the arguments is shown:
