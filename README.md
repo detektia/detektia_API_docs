@@ -1,8 +1,8 @@
 # API Detektia
 
-An API to serve Detektia data, available at http://34.65.185.118
+An API to serve Detektia data, available at https://34.65.185.118
 
-Go to http://34.65.185.118/docs in your browser to see the API documentation. <span style="color:salmon">**(currently not working)**</span>
+Go to https://34.65.185.118/docs in your browser to see the API documentation. <span style="color:salmon">**(currently not working)**</span>
 
 <span style="color:lightgreen">**NOTICE**: The upcoming update, new fields will be added to the metadata files and new endpoints will be available. Also important, the filed *project* will change to *scenario*.</span> 
 
