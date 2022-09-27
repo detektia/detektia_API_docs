@@ -4,8 +4,6 @@ An API to serve Detektia data, available at https://34.65.185.118
 
 Go to https://34.65.185.118/docs in your browser to see the API documentation. <span style="color:salmon">**(currently not working)**</span>
 
-<span style="color:lightgreen">**NOTICE**: The upcoming update, new fields will be added to the metadata files and new endpoints will be available. Also important, the filed *project* will change to *scenario*.</span> 
-
 
 # Using the API
 
@@ -55,32 +53,40 @@ This endpoint retrive a list of jsons containing the metadata of all the point d
 ```json
 [
   {
-    "project":"Genoa",
+    "scenario":"Genoa",
     "datasetname":"genoa_20170124",
     "username":"demo_genoa",
-    "count":20263,
-    "bbox":{
-      "coordinates":
-        [[[8.950002,44.39],
-          [8.950002,44.42],
-          [8.99,44.42],
-          [8.99,44.39],
-          [8.950002,44.39]]],
-      "type":"Polygon"},
     "satellite":"sen",
     "orbit":"26",
     "swath":"IW2",
     "geometry":"ASCENDING",
-    "lon_ref":8.764169,
-    "lat_ref":44.31931,
     "inc_angle":41.76348969125569,
     "heading_angle":-167.9403911657992,
+    "user_boundary":{
+      "coordinates":[
+        [[8.950002,44.39],
+        [8.950002,44.42],
+        [8.99,44.42],
+        [8.99,44.39],
+        [8.950002,44.39]]
+      ],
+      "type":"Polygon"
+    },
+    "count":20263,
     "dates":[
       736177,
       736285,
       ...,
-      736717],
-      "dataset_type":"points"},
+      736717
+    ],
+    "d_min": 61,
+    "d_max": -24,
+    "info": {
+      "optional_test_filed": "test_body",
+      ...,
+    },
+    "dataset_type":"points"
+  },
   {
     "project":"Genoa",
     "datasetname":"genoa_20181209",
@@ -113,10 +119,9 @@ The response is a list of jsons containing the polygons metadata, e.g.:
 ```json
 [
   {
-    "project":"Genoa",
+    "scenario":"Genoa",
     "datasetname":"bhi_genova",
     "username":"demo_genoa",
-    "count":1511,
     "bbox":{
       "coordinates":
         [[[8.953373,44.3996843],
@@ -125,22 +130,40 @@ The response is a list of jsons containing the polygons metadata, e.g.:
           [8.9875057,44.3996843],
           [8.953373,44.3996843]]],
       "type":"Polygon"},
-    "dataset_type":"polygons"
-  }
+    "count":1511,
+    "properties": [
+      "velmax_pte",
+      "velsd_pte",
+      "velmax_normal",
+      "velsd_normal"
+    ],
+    "info": {
+      "properties_info": {
+        "velmax_pte": "test",
+        "velsd_pte": "test",
+        "velmax_normal": "test",
+        "velsd_normal": "test"
+      },
+      "optional_test_filed": "test_filed",
+      ...,
+    },
+    "dataset_type": "polygons"
+  },
+  ...
 ]
 ```
 
 In this example there is only one polygon dataset in the database, `bhi_geonva`, which belongs to the same project as the point datasets, `Genoa`.
 
-In order to get the metadata of a particular polygon dataset, in a json format, the endpoint is: https://34.65.185.118/users/username/polygons/datasetname/metadata <span style="color:salmon">**(Will be available in the next update)**</span> 
+In order to get the metadata of a particular polygon dataset, in a json format, the endpoint is: https://34.65.185.118/users/username/polygons/datasetname/metadata
 
 ```python
 curl -k -X GET https://34.65.185.118/users/demo_genova/polygons/bhi_genoa/metadata -H 'accept: application/json' -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMDA2MDgzOH0.F-Cme8voQHu_UkHsZjD_H7g_asa5ewilv69o5H0Yc-w"
 ```
 
 
-### Extended values <span style="color:salmon">(Will be available in the next update)</span> 
-endpoint: <span style="color:#91B9FF">users/username/extended</span> 
+### Extended values 
+endpoint: https://34.65.185.118/users/username/extended
 
 ```python
 curl -k -X GET https://34.65.185.118/users/demo_genoa/extended -H 'accept: application/json' -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMDA2MDgzOH0.F-Cme8voQHu_UkHsZjD_H7g_asa5ewilv69o5H0Yc-w"
@@ -149,7 +172,37 @@ curl -k -X GET https://34.65.185.118/users/demo_genoa/extended -H 'accept: appli
 The response body is a list of jsons containing the extended metadata, e.g.:
 
 ```python
-...
+[
+  {
+    "scenario": "Genoa",
+    "datasetname": "genoa_20170124"
+    "key": "warnings",
+    "type": "categoric",
+    "units": "None",
+    "info": {"test_filed": "test_body"}
+  },
+  {
+    "scenario": "Genoa",
+    "datasetname": "genoa_20170124"
+    "key": "clusters_2",
+    "type": "categoric",
+    "units": "None",
+    "info": {"test_filed": "test_body"}
+  },
+  {
+    "scenario": "Genoa",
+    "datasetname": "genoa_20181209"
+    ...
+  }
+  ...
+]
+```
+
+The endpoint for getting the metadata of a particular dataset is
+https://34.65.185.118/users/username/extended/datasetname/metadata
+
+```python
+curl -k -X GET https://34.65.185.118/users/demo_genoa/extended/genoa_20170124/metadata -H 'accept: application/json' -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMDA2MDgzOH0.F-Cme8voQHu_UkHsZjD_H7g_asa5ewilv69o5H0Yc-w"
 ```
 
 
@@ -335,7 +388,7 @@ The response body is a feature collection with a list of jsons containing all th
 As can be seen, not only velocity and all the dates are retrieved, but also the lables of two different clusterizations and the date of a warning.
 
 
-### Extended values <span style="color:salmon">**(Will be available in the next update)**</span> 
+### Extended values 
 
 The extended values can be access for all the points at once indicating its key. This can be done with the endpoint https://34.65.185.118/users/username/datasets/datasetname/extended and the `request body` *key*=extended_key.
 
@@ -345,8 +398,18 @@ Let's take the *warnings* key for this example.
 curl -k -X GET https://34.65.185.118/users/demo_genoa/datasets/genoa_20181209/extended?key=warnings -H 'accetp:application/json' -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMDA2MDgzOH0.F-Cme8voQHu_UkHsZjD_H7g_asa5ewilv69o5H0Yc-w"
 ```
 
-The response body is
+The response body is a json containing the point ids along with their associated extended value.
 
 ```python
-...
+{
+  "warning": {
+    "1": "0",
+    "2": "0",
+    "3": "0",
+    "4": "1",
+    "5": "0",
+    "6": "0",
+    ...,
+  }
+}
 ```
